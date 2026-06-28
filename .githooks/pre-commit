@@ -1,0 +1,14 @@
+#!/bin/sh
+# Block accidental commits of scripts/ on main (scripts live on the scripts branch).
+
+branch=$(git symbolic-ref --short HEAD 2>/dev/null) || exit 0
+[ "$branch" = "main" ] || exit 0
+
+if git diff --cached --name-only | grep -q '^scripts/'; then
+    echo "error: scripts/ must not be committed on main."
+    echo "       Sync locally with: .\\sync_scripts.ps1"
+    echo "       Commit script changes on the scripts branch instead."
+    exit 1
+fi
+
+exit 0

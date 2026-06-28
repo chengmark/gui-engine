@@ -23,6 +23,22 @@ Windows automation toolkit with a control-panel GUI, JSON script runner, input r
 pip install -r requirements.txt
 ```
 
+### JSON scripts (local only on `main`)
+
+Automation JSON files live on the separate **`scripts`** branch so they are not pushed with application code on **`main`**. The `scripts/` folder is listed in `.gitignore` on `main`.
+
+After cloning or switching to `main`, pull scripts into your working tree (not staged, not committed):
+
+```powershell
+.\sync_scripts.ps1
+```
+
+To commit or push script changes, use the `scripts` branch. On `main`, enable the repo hooks once so `scripts/` cannot be committed or pushed by mistake:
+
+```powershell
+.\setup_hooks.ps1
+```
+
 ## Quick start
 
 ### GUI (recommended)
