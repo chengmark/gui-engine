@@ -1,0 +1,123 @@
+{
+    "description": "風沙",
+    "toggle": "home",
+    "steps": [
+        {
+            "command": "KeyDown",
+            "args": [
+                "W",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                300
+            ]
+        },
+        {
+            "command": "KeyUp",
+            "args": [
+                "W",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                500
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "F",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                11000
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "N",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                14000
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "Y",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                14000
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "N",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                14000
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "N",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                14000
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "Y",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                28000
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "F",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                15000
+            ]
+        }
+    ]
+}

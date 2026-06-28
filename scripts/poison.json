@@ -1,0 +1,40 @@
+{
+    "description": "毒塔",
+    "toggle": "home",
+    "scripts": [],
+    "initial": [],
+    "loop": [
+        {
+            "command": "ImportScript",
+            "args": [
+                "fly.json"
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "3",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                4000
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "Q",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                2000
+            ]
+        }
+    ]
+}

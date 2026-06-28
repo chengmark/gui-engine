@@ -1,0 +1,113 @@
+{
+    "description": "怜花禈院 虎骨酒 換骨醪",
+    "toggle": "home",
+    "scripts": [],
+    "initial": [],
+    "loop": [
+        {
+            "command": "KeyPress",
+            "args": [
+                "Space",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                500
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "Space",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                2500
+            ]
+        },
+        {
+            "command": "KeyHoldAndRelease",
+            "args": [
+                "S",
+                0.5
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "Space",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                500
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "Shift",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                500
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "Q",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                2000
+            ]
+        },
+        {
+            "command": "KeyHoldAndRelease",
+            "args": [
+                "W",
+                 2
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                 3000
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "F",
+                10
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                2000
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "F",
+                3
+            ]
+        }
+    ]
+}

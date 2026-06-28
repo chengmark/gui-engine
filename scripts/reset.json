@@ -1,0 +1,80 @@
+{
+    "description": "重置怪物 - 進出試煉場",
+    "toggle": "home",
+    "scripts": [],
+    "initial": [
+        {
+            "command": "KeyPress",
+            "args": [
+                "Esc",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                500
+            ]
+        },
+        {
+            "command": "ClickOn",
+            "args": [
+                1630,
+                930
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "F",
+                1
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "Space",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                6000
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "Esc",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                1000
+            ]
+        },
+        {
+            "command": "ClickOn",
+            "args": [
+                1110,
+                635
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                11000
+            ]
+        },
+        {
+            "command": "KeyPress",
+            "args": [
+                "Esc",
+                1
+            ]
+        }
+    ]
+}

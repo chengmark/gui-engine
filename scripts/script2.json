@@ -1,0 +1,36 @@
+{
+    "description": "打魚",
+    "toggle": "home",
+    "scripts": [
+        {
+            "file": "limit_download.py",
+            "args": [
+                11084,
+                "5 KB"
+            ]
+        }
+    ],
+    "initial": [
+        {
+            "command": "Delay",
+            "args": [
+                2000
+            ]
+        }
+    ],
+    "loop": [
+        {
+            "command": "KeyPress",
+            "args": [
+                "2",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                1000
+            ]
+        }
+    ]
+}

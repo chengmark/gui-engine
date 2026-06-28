@@ -1,0 +1,21 @@
+{
+    "description": "自動收集",
+    "toggle": "home",
+    "scripts": [],
+    "initial": [],
+    "loop": [
+        {
+            "command": "KeyPress",
+            "args": [
+                "1111",
+                1
+            ]
+        },
+        {
+            "command": "Delay",
+            "args": [
+                1000
+            ]
+        }
+    ]
+}

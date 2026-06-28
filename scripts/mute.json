@@ -1,0 +1,11 @@
+{
+    "description": "Toggle Mute",
+    "background": [
+        {
+            "command": "ToggleMute",
+            "args": [
+                "MB5"
+            ]
+        }
+    ]
+}
