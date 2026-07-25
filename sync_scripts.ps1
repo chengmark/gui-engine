@@ -15,19 +15,19 @@ if (-not $files) {
     Write-Error "No files under scripts/ on branch '$branch'."
 }
 
-$destDir = Join-Path $root "scripts"
-New-Item -ItemType Directory -Force -Path $destDir | Out-Null
-
-foreach ($path in $files) {
-    $relative = $path -replace '^scripts/', ''
-    $dest = Join-Path $destDir $relative
-    $parent = Split-Path -Parent $dest
-    if ($parent) {
-        New-Item -ItemType Directory -Force -Path $parent | Out-Null
+# Use git archive so UTF-8 bytes are preserved (git show via PowerShell corrupts CJK text).
+$zipPath = Join-Path ([System.IO.Path]::GetTempPath()) "gui-engine-scripts-sync.zip"
+try {
+    if (Test-Path $zipPath) {
+        Remove-Item $zipPath -Force
     }
-    $content = git show "${branch}:${path}"
-    $utf8NoBom = New-Object System.Text.UTF8Encoding $false
-    [System.IO.File]::WriteAllText($dest, $content, $utf8NoBom)
+    git archive --format=zip -o $zipPath $branch scripts
+    Expand-Archive -Path $zipPath -DestinationPath $root -Force
+}
+finally {
+    if (Test-Path $zipPath) {
+        Remove-Item $zipPath -Force
+    }
 }
 
 Write-Host "Synced $($files.Count) file(s) from '$branch' into scripts/ (not staged)."

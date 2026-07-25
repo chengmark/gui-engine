@@ -1,0 +1,65 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - name: Build Windows exe
+        shell: pwsh
+        run: .\build_exe.ps1
+
+      - name: Zip release package
+        shell: pwsh
+        run: |
+          if (Test-Path gui-engine-windows.zip) { Remove-Item gui-engine-windows.zip -Force }
+          Compress-Archive -Path dist\gui-engine -DestinationPath gui-engine-windows.zip
+
+      - name: Release metadata
+        id: meta
+        shell: pwsh
+        run: |
+          if ($env:GITHUB_REF -like "refs/tags/*") {
+            "tag=$env:GITHUB_REF_NAME" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+            "name=gui-engine $env:GITHUB_REF_NAME" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          } else {
+            "tag=latest" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+            "name=Latest" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          }
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.meta.outputs.tag }}
+          name: ${{ steps.meta.outputs.name }}
+          target_commitish: ${{ github.sha }}
+          make_latest: true
+          generate_release_notes: true
+          files: gui-engine-windows.zip
+          body: |
+            Windows build of **gui-engine** (PyInstaller onedir).
+
+            1. Download `gui-engine-windows.zip`
+            2. Extract the folder
+            3. Run `gui-engine\gui-engine.exe`
+            4. Put JSON scripts in `gui-engine\scripts\`
+
+            Commit: `${{ github.sha }}`
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

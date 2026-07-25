@@ -39,6 +39,20 @@ To commit or push script changes, use the `scripts` branch. On `main`, enable th
 .\setup_hooks.ps1
 ```
 
+### Windows exe releases
+
+Pushing to **`main`** (or a version tag like `v1.0.0`) runs GitHub Actions, which builds `gui-engine.exe` and publishes **[Releases](https://github.com/chengmark/gui-engine/releases)** with `gui-engine-windows.zip`.
+
+- Push to `main` → updates the **Latest** release  
+- Push tag `v*` → creates a versioned release  
+
+```powershell
+git push origin main
+# or: git tag v1.0.0 && git push origin v1.0.0
+```
+
+Rebuild locally anytime with `.\build_exe.ps1`.
+
 ## Quick start
 
 ### GUI (recommended)

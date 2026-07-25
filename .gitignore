@@ -1,5 +1,6 @@
 # Project
 scripts/
+gui-engine.spec
 
 # Python
 __pycache__/

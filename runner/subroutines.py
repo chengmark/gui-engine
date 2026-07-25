@@ -30,11 +30,19 @@ class ScriptSubroutine:
     def _build_command(self) -> list[str]:
         target = self._resolve_path()
         str_args = [str(arg) for arg in self.args]
+        frozen = getattr(sys, "frozen", False)
 
         if target.lower().endswith(".json"):
+            if frozen:
+                return [sys.executable, "--run", target, *str_args, "--controlled"]
             return [sys.executable, RUN_PY, target, *str_args, "--controlled"]
 
         if target.lower().endswith(".py"):
+            if frozen:
+                name = os.path.basename(target).lower()
+                if name == "limit_download.py":
+                    return [sys.executable, "--limit-download", *str_args, "--controlled"]
+                raise ValueError(f"Unsupported bundled script when frozen: {self.file}")
             return [sys.executable, target, *str_args, "--controlled"]
 
         raise ValueError(f"Unsupported script file type: {self.file}")

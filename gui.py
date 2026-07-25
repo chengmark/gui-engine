@@ -29,7 +29,10 @@ from gui.services import (
 )
 from gui.toast import Toast
 
-APP_DIR = os.path.dirname(os.path.abspath(__file__))
+if getattr(sys, "frozen", False):
+    APP_DIR = os.path.dirname(sys.executable)
+else:
+    APP_DIR = os.path.dirname(os.path.abspath(__file__))
 SCRIPTS_DIR = os.path.join(APP_DIR, "scripts")
 
 POLL_MS = 200
@@ -694,7 +697,32 @@ class AutomationGUI:
         self.root.mainloop()
 
 
+def _dispatch_frozen_mode() -> bool:
+    """When packaged as an exe, re-invoke as runner / limit_download for subroutines."""
+    if not getattr(sys, "frozen", False) or len(sys.argv) < 2:
+        return False
+
+    mode = sys.argv[1]
+    if mode == "--run":
+        sys.argv = [sys.argv[0], *sys.argv[2:]]
+        from runner.cli import main as run_main
+
+        run_main()
+        return True
+
+    if mode == "--limit-download":
+        sys.argv = [sys.argv[0], *sys.argv[2:]]
+        from limit_download import main as limit_main
+
+        limit_main()
+        return True
+
+    return False
+
+
 def main():
+    if _dispatch_frozen_mode():
+        return
     if sys.platform != "win32":
         print("Warning: gui.py is intended for Windows.")
     app = AutomationGUI()
